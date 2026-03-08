@@ -1,0 +1,500 @@
+
+Blackbird_v01.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00803f00  00803f00  000002eb  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000024e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000009  00803f00  00803f00  000002e2  2**0
+                  ALLOC
+  3 .fuse         00000009  00820000  00820000  000002e2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .comment      00000030  00000000  00000000  000002eb  2**0
+                  CONTENTS, READONLY
+  5 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000031c  2**2
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000080  00000000  00000000  00000358  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00003135  00000000  00000000  000003d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000016be  00000000  00000000  0000350d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000006fc  00000000  00000000  00004bcb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  0000007c  00000000  00000000  000052c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00001843  00000000  00000000  00005344  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    0000003c  00000000  00000000  00006b87  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000030  00000000  00000000  00006bc3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	28 c0       	rjmp	.+80     	; 0x54 <__bad_interrupt>
+   4:	27 c0       	rjmp	.+78     	; 0x54 <__bad_interrupt>
+   6:	26 c0       	rjmp	.+76     	; 0x54 <__bad_interrupt>
+   8:	25 c0       	rjmp	.+74     	; 0x54 <__bad_interrupt>
+   a:	24 c0       	rjmp	.+72     	; 0x54 <__bad_interrupt>
+   c:	23 c0       	rjmp	.+70     	; 0x54 <__bad_interrupt>
+   e:	22 c0       	rjmp	.+68     	; 0x54 <__bad_interrupt>
+  10:	21 c0       	rjmp	.+66     	; 0x54 <__bad_interrupt>
+  12:	20 c0       	rjmp	.+64     	; 0x54 <__bad_interrupt>
+  14:	80 c0       	rjmp	.+256    	; 0x116 <__vector_10>
+  16:	1e c0       	rjmp	.+60     	; 0x54 <__bad_interrupt>
+  18:	1d c0       	rjmp	.+58     	; 0x54 <__bad_interrupt>
+  1a:	1c c0       	rjmp	.+56     	; 0x54 <__bad_interrupt>
+  1c:	1b c0       	rjmp	.+54     	; 0x54 <__bad_interrupt>
+  1e:	1a c0       	rjmp	.+52     	; 0x54 <__bad_interrupt>
+  20:	19 c0       	rjmp	.+50     	; 0x54 <__bad_interrupt>
+  22:	18 c0       	rjmp	.+48     	; 0x54 <__bad_interrupt>
+  24:	17 c0       	rjmp	.+46     	; 0x54 <__bad_interrupt>
+  26:	16 c0       	rjmp	.+44     	; 0x54 <__bad_interrupt>
+  28:	15 c0       	rjmp	.+42     	; 0x54 <__bad_interrupt>
+  2a:	14 c0       	rjmp	.+40     	; 0x54 <__bad_interrupt>
+  2c:	13 c0       	rjmp	.+38     	; 0x54 <__bad_interrupt>
+  2e:	12 c0       	rjmp	.+36     	; 0x54 <__bad_interrupt>
+  30:	11 c0       	rjmp	.+34     	; 0x54 <__bad_interrupt>
+  32:	10 c0       	rjmp	.+32     	; 0x54 <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	cd bf       	out	0x3d, r28	; 61
+  3c:	df e3       	ldi	r29, 0x3F	; 63
+  3e:	de bf       	out	0x3e, r29	; 62
+
+00000040 <__do_clear_bss>:
+  40:	2f e3       	ldi	r18, 0x3F	; 63
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	bf e3       	ldi	r27, 0x3F	; 63
+  46:	01 c0       	rjmp	.+2      	; 0x4a <.do_clear_bss_start>
+
+00000048 <.do_clear_bss_loop>:
+  48:	1d 92       	st	X+, r1
+
+0000004a <.do_clear_bss_start>:
+  4a:	a9 30       	cpi	r26, 0x09	; 9
+  4c:	b2 07       	cpc	r27, r18
+  4e:	e1 f7       	brne	.-8      	; 0x48 <.do_clear_bss_loop>
+  50:	82 d0       	rcall	.+260    	; 0x156 <main>
+  52:	fb c0       	rjmp	.+502    	; 0x24a <_exit>
+
+00000054 <__bad_interrupt>:
+  54:	d5 cf       	rjmp	.-86     	; 0x0 <__vectors>
+
+00000056 <InitializeHardware>:
+{
+	// *** Interrupts configuration - Chapter 13 ***
+	// The Timer Tick will be the highest priority interrupt (Level 1).
+	//   All other interrupts will be Level 0, but also a round-robin schedule.
+	// Set the Round-robin Scheduling Enable bit:
+	CPUINT.CTRLA |= CPUINT_LVL0RR_bm;
+  56:	e0 e1       	ldi	r30, 0x10	; 16
+  58:	f1 e0       	ldi	r31, 0x01	; 1
+  5a:	80 81       	ld	r24, Z
+  5c:	81 60       	ori	r24, 0x01	; 1
+  5e:	80 83       	st	Z, r24
+	// Set the level 1 interrupt vector:
+	CPUINT.LVL1VEC = TCA0_CMP0_vect_num;				//The Timer/Counter creates the Timer Tick
+  60:	8a e0       	ldi	r24, 0x0A	; 10
+  62:	83 83       	std	Z+3, r24	; 0x03
+	// * pin 3 = PA5, TCB0, Buzz_clk (output)
+	// * pin 4 = PA6, <unused>
+	// * pin 5 = PA7, 20Hz_clk (output)
+
+	// Output pins:
+	PORTA.DIRSET = PIN3_bm | PIN4_bm | PIN5_bm | PIN7_bm;						// set PA3, PA4, PA5 and PA7 to output
+  64:	e0 e0       	ldi	r30, 0x00	; 0
+  66:	f4 e0       	ldi	r31, 0x04	; 4
+  68:	88 eb       	ldi	r24, 0xB8	; 184
+  6a:	81 83       	std	Z+1, r24	; 0x01
+	//PORTA.PIN1CTRL = 0;
+	//PORTA.PIN2CTRL = 0;
+	//PORTA.PIN3CTRL = 0;											// output
+	//PORTA.PIN4CTRL = 0;											// output
+	//PORTA.PIN5CTRL = 0;											// output
+	PORTA.PIN6CTRL = PORT_PULLUPEN_bm | PORT_ISC_INPUT_DISABLE_gc;	// pullup (unused)
+  6c:	8c e0       	ldi	r24, 0x0C	; 12
+  6e:	86 8b       	std	Z+22, r24	; 0x16
+	// * pin 8 = PB3, EnHVnegative (output)
+	// * pin 7 = PB4, 20Hz_clk_input (input)
+	// * pin 6 = PB5, CLKOUT (output)
+	
+	// Output pins:
+	PORTB.DIRSET = PIN5_bm | PIN3_bm | PIN2_bm | PIN0_bm;	// set PB5, PB3, PB2, PB0 to output
+  70:	9d e2       	ldi	r25, 0x2D	; 45
+  72:	90 93 21 04 	sts	0x0421, r25	; 0x800421 <__RODATA_PM_OFFSET__+0x7f8421>
+	// * pin 13 = PC1, EnBuzzerAmp (output)
+	// * pin 14 = PC2, (unused)
+	// * pin 15 = PC3, IncomingBuzz (input)
+	
+	// Output pins:
+	PORTC.DIRSET = PIN1_bm;											// set PC1 to output
+  76:	e0 e4       	ldi	r30, 0x40	; 64
+  78:	f4 e0       	ldi	r31, 0x04	; 4
+  7a:	92 e0       	ldi	r25, 0x02	; 2
+  7c:	91 83       	std	Z+1, r25	; 0x01
+	
+	//PORTC.PIN0CTRL = 0;
+	//PORTC.PIN1CTRL = 0;
+	PORTC.PIN2CTRL = PORT_PULLUPEN_bm | PORT_ISC_INPUT_DISABLE_gc;	// pullup (unused)
+  7e:	82 8b       	std	Z+18, r24	; 0x12
+	//PORTC.PIN3CTRL = 0;
+
+
+	// *** Clock Control configuration - Chapter 10 ***	// Clock is set for 32 KHz internal
+	ccp_write_io((void *) & (CLKCTRL.MCLKCTRLB), (0x00));				// Set main clock prescale to 1
+  80:	60 e0       	ldi	r22, 0x00	; 0
+  82:	81 e6       	ldi	r24, 0x61	; 97
+  84:	90 e0       	ldi	r25, 0x00	; 0
+  86:	db d0       	rcall	.+438    	; 0x23e <ccp_write_io>
+	ccp_write_io((void *) & (CLKCTRL.OSC32KCTRLA), (0x02));				// Run the 32 KHz all of the time.
+  88:	62 e0       	ldi	r22, 0x02	; 2
+  8a:	88 e7       	ldi	r24, 0x78	; 120
+  8c:	90 e0       	ldi	r25, 0x00	; 0
+  8e:	d7 d0       	rcall	.+430    	; 0x23e <ccp_write_io>
+	while ((CLKCTRL.MCLKSTATUS & CLKCTRL_OSC32KS_bm) == 0) { ; }		// Wait while the 32 KHz clock stabilizes:
+  90:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <__RODATA_PM_OFFSET__+0x7f8063>
+  94:	85 ff       	sbrs	r24, 5
+  96:	fc cf       	rjmp	.-8      	; 0x90 <__EEPROM_REGION_LENGTH__+0x10>
+	ccp_write_io((void *) & (CLKCTRL.MCLKCTRLA), (0x81));				// Switch to the internal low-power 32 KHz clock & enable output on pin	
+  98:	61 e8       	ldi	r22, 0x81	; 129
+  9a:	80 e6       	ldi	r24, 0x60	; 96
+  9c:	90 e0       	ldi	r25, 0x00	; 0
+  9e:	cf d0       	rcall	.+414    	; 0x23e <ccp_write_io>
+	while ((CLKCTRL.MCLKSTATUS & CLKCTRL_OSC32KS_bm) == 0) { ; }		// Wait while the 32 KHz clock stabilizes:
+  a0:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <__RODATA_PM_OFFSET__+0x7f8063>
+  a4:	85 ff       	sbrs	r24, 5
+  a6:	fc cf       	rjmp	.-8      	; 0xa0 <__EEPROM_REGION_LENGTH__+0x20>
+	ccp_write_io((void *) & (CLKCTRL.OSC20MCTRLA), (0x00));				// Do not run the 16/20 MHz clock
+  a8:	60 e0       	ldi	r22, 0x00	; 0
+  aa:	80 e7       	ldi	r24, 0x70	; 112
+  ac:	90 e0       	ldi	r25, 0x00	; 0
+  ae:	c7 d0       	rcall	.+398    	; 0x23e <ccp_write_io>
+	
+	// *** Timer/Counter type A (TCA) configuration - Chapter 20 ***
+	// This timer has two main functions. One, to create a 8.33 ms (120 Hz) interrupt that
+	//   will becomes the timer tick for all software loops. The ISR will create
+	//   the 20 Hz clock based on this timer.
+	TCA0.SINGLE.CTRLA = TCA_SINGLE_CLKSEL_DIV1_gc;				// No divider
+  b0:	e0 e0       	ldi	r30, 0x00	; 0
+  b2:	fa e0       	ldi	r31, 0x0A	; 10
+  b4:	10 82       	st	Z, r1
+	TCA0.SINGLE.CTRLB = TCA_SINGLE_CMP0EN_bm					// Compare 0 enable, output pin enabled
+  b6:	83 e1       	ldi	r24, 0x13	; 19
+  b8:	81 83       	std	Z+1, r24	; 0x01
+						| TCA_SINGLE_WGMODE_SINGLESLOPE_gc;		// Single Slope PWM mode
+	TCA0.SINGLE.PER = 272;										// TOP value, freq of PWM = 32768/(N+1) where N is TCA0.SINGLE.PER (8.33 ms)
+  ba:	80 e1       	ldi	r24, 0x10	; 16
+  bc:	91 e0       	ldi	r25, 0x01	; 1
+  be:	86 a3       	std	Z+38, r24	; 0x26
+  c0:	97 a3       	std	Z+39, r25	; 0x27
+	TCA0.SINGLE.CNT = 0x0000;									// clear the counter
+  c2:	10 a2       	std	Z+32, r1	; 0x20
+  c4:	11 a2       	std	Z+33, r1	; 0x21
+	TCA0.SINGLE.CMP0 = 136;										// set output pin at 50% duty cycle
+  c6:	88 e8       	ldi	r24, 0x88	; 136
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	80 a7       	std	Z+40, r24	; 0x28
+  cc:	91 a7       	std	Z+41, r25	; 0x29
+	TCA0.SINGLE.INTCTRL = TCA_SINGLE_CMP0EN_bm;					// enable interrupts
+  ce:	80 e1       	ldi	r24, 0x10	; 16
+  d0:	82 87       	std	Z+10, r24	; 0x0a
+	TCA0.SINGLE.CTRLA |= TCA_SINGLE_ENABLE_bm;					// Enable the peripheral
+  d2:	80 81       	ld	r24, Z
+  d4:	81 60       	ori	r24, 0x01	; 1
+  d6:	80 83       	st	Z, r24
+
+	// *** Timer/Counter type B (TCB) configuration - Chapter 21 ***
+	// Create PWM signals to control the frequency of the Buzz Clock.
+	TCB0.CTRLA = TCB_CLKSEL_CLKDIV1_gc;							// Divide clock by 1 (no divider)
+  d8:	e0 e4       	ldi	r30, 0x40	; 64
+  da:	fa e0       	ldi	r31, 0x0A	; 10
+  dc:	10 82       	st	Z, r1
+	TCB0.CTRLB = TCB_CCMPEN_bm									// Enable compare and output pin
+  de:	87 e1       	ldi	r24, 0x17	; 23
+  e0:	81 83       	std	Z+1, r24	; 0x01
+				| TCB_CNTMODE_PWM8_gc;							// 8-bit PWM mode
+	TCB0.CCMPL = 18;											// TOP value, 8-bit value, the period of the waveform
+  e2:	82 e1       	ldi	r24, 0x12	; 18
+  e4:	84 87       	std	Z+12, r24	; 0x0c
+	TCB0.CCMPH = 6;												// COMPARE value, 8-bit value, controls the duty cycle, set output pin at about 1/3 of the period for high harmonic content
+  e6:	86 e0       	ldi	r24, 0x06	; 6
+  e8:	85 87       	std	Z+13, r24	; 0x0d
+	TCB0.CNT = 0;												// Counter should be initialized to BOTTOM value
+  ea:	12 86       	std	Z+10, r1	; 0x0a
+  ec:	13 86       	std	Z+11, r1	; 0x0b
+	TCB0.CTRLA |= TCB_ENABLE_bm;								// Enable the peripheral
+  ee:	80 81       	ld	r24, Z
+  f0:	81 60       	ori	r24, 0x01	; 1
+  f2:	80 83       	st	Z, r24
+
+
+	// *** Custom Configurable Logic - Chapter 27 ***
+	// We are implementing a 2-input AND gate.
+	CCL.LUT0CTRLB = CCL_INSEL0_MASK_gc | CCL_INSEL1_IO_gc;		// IN0 is masked, IN1 is I/O pin
+  f4:	e0 ec       	ldi	r30, 0xC0	; 192
+  f6:	f1 e0       	ldi	r31, 0x01	; 1
+  f8:	80 e5       	ldi	r24, 0x50	; 80
+  fa:	86 83       	std	Z+6, r24	; 0x06
+	CCL.LUT0CTRLC = CCL_INSEL2_IO_gc;							// IN2 is I/O pin
+  fc:	85 e0       	ldi	r24, 0x05	; 5
+  fe:	87 83       	std	Z+7, r24	; 0x07
+	
+	CCL.TRUTH0 = 0x40;											// Truth table for AND gate
+ 100:	80 e4       	ldi	r24, 0x40	; 64
+ 102:	80 87       	std	Z+8, r24	; 0x08
+	
+	CCL.LUT0CTRLA = CCL_OUTEN_bm;								// Enable output pin for LUT0-OUT
+ 104:	88 e0       	ldi	r24, 0x08	; 8
+ 106:	85 83       	std	Z+5, r24	; 0x05
+	
+	CCL.LUT0CTRLA |= CCL_ENABLE_bm;								// Enable LUT0
+ 108:	85 81       	ldd	r24, Z+5	; 0x05
+ 10a:	81 60       	ori	r24, 0x01	; 1
+ 10c:	85 83       	std	Z+5, r24	; 0x05
+	CCL.CTRLA = CCL_ENABLE_bm;									// Enable the CCL module
+ 10e:	81 e0       	ldi	r24, 0x01	; 1
+ 110:	80 83       	st	Z, r24
+	
+
+	// *** Sleep Controller configuration - Chapter 11 ***
+	// Sleep mode is not used.
+
+	sei();					// enable all interrupts
+ 112:	78 94       	sei
+ 114:	08 95       	ret
+
+00000116 <__vector_10>:
+/*                          ISR - System Tick                                */
+/*****************************************************************************/
+// The Timer/Counter Type A generated an interrupt every 8.33 ms. This is
+//   used for the main loop timing and also for generating a 20 Hz clock.
+ISR(TCA0_CMP0_vect)
+{
+ 116:	1f 92       	push	r1
+ 118:	0f 92       	push	r0
+ 11a:	0f b6       	in	r0, 0x3f	; 63
+ 11c:	0f 92       	push	r0
+ 11e:	11 24       	eor	r1, r1
+ 120:	8f 93       	push	r24
+	TimerTickFlag = TRUE;							// set timer tick for main software loop
+ 122:	81 e0       	ldi	r24, 0x01	; 1
+ 124:	80 93 08 3f 	sts	0x3F08, r24	; 0x803f08 <TimerTickFlag>
+	TCA0.SINGLE.INTFLAGS = 0x10;					// clear interrupt
+ 128:	80 e1       	ldi	r24, 0x10	; 16
+ 12a:	80 93 0b 0a 	sts	0x0A0B, r24	; 0x800a0b <__RODATA_PM_OFFSET__+0x7f8a0b>
+	if (T20HzCounter != 0)
+ 12e:	80 91 00 3f 	lds	r24, 0x3F00	; 0x803f00 <__DATA_REGION_ORIGIN__>
+ 132:	88 23       	and	r24, r24
+ 134:	21 f0       	breq	.+8      	; 0x13e <__vector_10+0x28>
+	{
+		T20HzCounter--;
+ 136:	81 50       	subi	r24, 0x01	; 1
+ 138:	80 93 00 3f 	sts	0x3F00, r24	; 0x803f00 <__DATA_REGION_ORIGIN__>
+ 13c:	06 c0       	rjmp	.+12     	; 0x14a <__vector_10+0x34>
+	}
+	else
+	{
+		T20HzCounter = 2;							// reset the counter
+ 13e:	82 e0       	ldi	r24, 0x02	; 2
+ 140:	80 93 00 3f 	sts	0x3F00, r24	; 0x803f00 <__DATA_REGION_ORIGIN__>
+		PORTA.OUTTGL = PIN7_bm;						// Toggle the 20 Hz clock pin
+ 144:	80 e8       	ldi	r24, 0x80	; 128
+ 146:	80 93 07 04 	sts	0x0407, r24	; 0x800407 <__RODATA_PM_OFFSET__+0x7f8407>
+	}	
+	return;
+}
+ 14a:	8f 91       	pop	r24
+ 14c:	0f 90       	pop	r0
+ 14e:	0f be       	out	0x3f, r0	; 63
+ 150:	0f 90       	pop	r0
+ 152:	1f 90       	pop	r1
+ 154:	18 95       	reti
+
+00000156 <main>:
+
+
+/*****************************************************************************/
+int main(void)
+{
+	InitializeHardware();
+ 156:	7f df       	rcall	.-258    	; 0x56 <InitializeHardware>
+	
+    while (1)	// loop forever
+    {
+		if (TimerTickFlag == TRUE)
+ 158:	80 91 08 3f 	lds	r24, 0x3F08	; 0x803f08 <TimerTickFlag>
+ 15c:	81 30       	cpi	r24, 0x01	; 1
+ 15e:	e1 f7       	brne	.-8      	; 0x158 <main+0x2>
+		{
+			// Enable High-voltage controls:
+			// Inputs: PushToRing (PB1) and 20Hz_clk (PB4)
+			// Outputs: EnHVpositive (PB2) and EnHVnegative (PB3)
+			if ((PORTB.IN & PIN1_bm) && (PORTB.IN & PIN4_bm))			// PushToRing true and 20Hz_clk is high
+ 160:	80 91 28 04 	lds	r24, 0x0428	; 0x800428 <__RODATA_PM_OFFSET__+0x7f8428>
+ 164:	81 ff       	sbrs	r24, 1
+ 166:	08 c0       	rjmp	.+16     	; 0x178 <main+0x22>
+ 168:	80 91 28 04 	lds	r24, 0x0428	; 0x800428 <__RODATA_PM_OFFSET__+0x7f8428>
+ 16c:	84 ff       	sbrs	r24, 4
+ 16e:	04 c0       	rjmp	.+8      	; 0x178 <main+0x22>
+			{
+				PORTB.OUTSET = PIN2_bm | PIN3_bm;	// RingGen goes positive
+ 170:	8c e0       	ldi	r24, 0x0C	; 12
+ 172:	80 93 25 04 	sts	0x0425, r24	; 0x800425 <__RODATA_PM_OFFSET__+0x7f8425>
+ 176:	12 c0       	rjmp	.+36     	; 0x19c <main+0x46>
+			}
+			else if ((PORTB.IN & PIN1_bm) && ((~PORTB.IN) & PIN4_bm))	// PushToRing true and 20Hz_clk is low
+ 178:	80 91 28 04 	lds	r24, 0x0428	; 0x800428 <__RODATA_PM_OFFSET__+0x7f8428>
+ 17c:	81 ff       	sbrs	r24, 1
+ 17e:	08 c0       	rjmp	.+16     	; 0x190 <main+0x3a>
+ 180:	80 91 28 04 	lds	r24, 0x0428	; 0x800428 <__RODATA_PM_OFFSET__+0x7f8428>
+ 184:	84 fd       	sbrc	r24, 4
+ 186:	04 c0       	rjmp	.+8      	; 0x190 <main+0x3a>
+			{
+				PORTB.OUTCLR = PIN2_bm | PIN3_bm;	// RingGen goes negative
+ 188:	8c e0       	ldi	r24, 0x0C	; 12
+ 18a:	80 93 26 04 	sts	0x0426, r24	; 0x800426 <__RODATA_PM_OFFSET__+0x7f8426>
+ 18e:	06 c0       	rjmp	.+12     	; 0x19c <main+0x46>
+			}
+			else																	// PushToRing false
+			{
+				PORTB.OUTCLR = PIN2_bm;				// HV+ set low (RingGen floating)
+ 190:	e0 e2       	ldi	r30, 0x20	; 32
+ 192:	f4 e0       	ldi	r31, 0x04	; 4
+ 194:	84 e0       	ldi	r24, 0x04	; 4
+ 196:	86 83       	std	Z+6, r24	; 0x06
+				PORTB.OUTSET = PIN3_bm;				// HV- set high (RingGen floating)
+ 198:	88 e0       	ldi	r24, 0x08	; 8
+ 19a:	85 83       	std	Z+5, r24	; 0x05
+			// One-shot routines:
+			// Inputs: IncomingBuzz (PC3) and BuzzClk (PA5)
+			// Outputs: OneShot25 (PA3) and Buzzer_Amp_Enable (PC1)
+			// One-Shot 1 is set for 25 ms
+			// One-Shot 2 is set for 150 ms
+			if (PORTC.IN & PIN3_bm)			// IncomingBuzz pin
+ 19c:	80 91 48 04 	lds	r24, 0x0448	; 0x800448 <__RODATA_PM_OFFSET__+0x7f8448>
+ 1a0:	83 ff       	sbrs	r24, 3
+ 1a2:	04 c0       	rjmp	.+8      	; 0x1ac <main+0x56>
+			{
+				IncomingBuzz = TRUE;
+ 1a4:	81 e0       	ldi	r24, 0x01	; 1
+ 1a6:	80 93 03 3f 	sts	0x3F03, r24	; 0x803f03 <IncomingBuzz>
+ 1aa:	02 c0       	rjmp	.+4      	; 0x1b0 <main+0x5a>
+			}
+			else
+			{
+				IncomingBuzz = FALSE;
+ 1ac:	10 92 03 3f 	sts	0x3F03, r1	; 0x803f03 <IncomingBuzz>
+			}
+			
+			
+			// One-shot 1 routine: (25 ms)
+			if (IncomingBuzz && IncomingBuzzPrevious && (~IncomingBuzzPreviousPrevious))		// rising edge (debounced)
+ 1b0:	80 91 03 3f 	lds	r24, 0x3F03	; 0x803f03 <IncomingBuzz>
+ 1b4:	88 23       	and	r24, r24
+ 1b6:	71 f0       	breq	.+28     	; 0x1d4 <main+0x7e>
+ 1b8:	90 91 02 3f 	lds	r25, 0x3F02	; 0x803f02 <IncomingBuzzPrevious>
+ 1bc:	99 23       	and	r25, r25
+ 1be:	51 f0       	breq	.+20     	; 0x1d4 <main+0x7e>
+			{
+				OneShot1Counter = 2;				// Timer Tick is 8.33 ms, one-shot set for 25 ms, hence counter = (25ms/8.33ms) - 1 = 2
+ 1c0:	92 e0       	ldi	r25, 0x02	; 2
+ 1c2:	90 93 07 3f 	sts	0x3F07, r25	; 0x803f07 <OneShot1Counter>
+				OneShot1State = TRUE;
+ 1c6:	91 e0       	ldi	r25, 0x01	; 1
+ 1c8:	90 93 05 3f 	sts	0x3F05, r25	; 0x803f05 <OneShot1State>
+				PORTA.OUTSET = PIN3_bm;
+ 1cc:	98 e0       	ldi	r25, 0x08	; 8
+ 1ce:	90 93 05 04 	sts	0x0405, r25	; 0x800405 <__RODATA_PM_OFFSET__+0x7f8405>
+ 1d2:	07 c0       	rjmp	.+14     	; 0x1e2 <main+0x8c>
+			}
+			else
+			{
+				if (OneShot1Counter != 0) OneShot1Counter--;
+ 1d4:	90 91 07 3f 	lds	r25, 0x3F07	; 0x803f07 <OneShot1Counter>
+ 1d8:	99 23       	and	r25, r25
+ 1da:	19 f0       	breq	.+6      	; 0x1e2 <main+0x8c>
+ 1dc:	91 50       	subi	r25, 0x01	; 1
+ 1de:	90 93 07 3f 	sts	0x3F07, r25	; 0x803f07 <OneShot1Counter>
+			}
+			
+			if (OneShot1Counter == 0)
+ 1e2:	90 91 07 3f 	lds	r25, 0x3F07	; 0x803f07 <OneShot1Counter>
+ 1e6:	91 11       	cpse	r25, r1
+ 1e8:	05 c0       	rjmp	.+10     	; 0x1f4 <main+0x9e>
+			{
+				OneShot1State = FALSE;
+ 1ea:	10 92 05 3f 	sts	0x3F05, r1	; 0x803f05 <OneShot1State>
+				PORTA.OUTCLR = PIN3_bm;
+ 1ee:	98 e0       	ldi	r25, 0x08	; 8
+ 1f0:	90 93 06 04 	sts	0x0406, r25	; 0x800406 <__RODATA_PM_OFFSET__+0x7f8406>
+			}
+			
+			// One-shot 2 routine (150 ms, re-triggerable):
+			if (IncomingBuzz && IncomingBuzzPrevious)				// rising edge (debounced)
+ 1f4:	88 23       	and	r24, r24
+ 1f6:	39 f0       	breq	.+14     	; 0x206 <main+0xb0>
+ 1f8:	80 91 02 3f 	lds	r24, 0x3F02	; 0x803f02 <IncomingBuzzPrevious>
+ 1fc:	88 23       	and	r24, r24
+ 1fe:	19 f0       	breq	.+6      	; 0x206 <main+0xb0>
+			{
+				OneShot2Counter = 18;				// Timer Tick is 8.33 ms, one-shot set for 150 ms, hence counter = 150ms/8.33mm = 18
+ 200:	82 e1       	ldi	r24, 0x12	; 18
+ 202:	80 93 06 3f 	sts	0x3F06, r24	; 0x803f06 <OneShot2Counter>
+			}
+			if (OneShot2Counter != 0)
+ 206:	80 91 06 3f 	lds	r24, 0x3F06	; 0x803f06 <OneShot2Counter>
+ 20a:	88 23       	and	r24, r24
+ 20c:	51 f0       	breq	.+20     	; 0x222 <main+0xcc>
+			{
+				OneShot2Counter--;
+ 20e:	81 50       	subi	r24, 0x01	; 1
+ 210:	80 93 06 3f 	sts	0x3F06, r24	; 0x803f06 <OneShot2Counter>
+				OneShot2State = TRUE;
+ 214:	81 e0       	ldi	r24, 0x01	; 1
+ 216:	80 93 04 3f 	sts	0x3F04, r24	; 0x803f04 <OneShot2State>
+				PORTC.OUTSET = PIN1_bm;
+ 21a:	82 e0       	ldi	r24, 0x02	; 2
+ 21c:	80 93 45 04 	sts	0x0445, r24	; 0x800445 <__RODATA_PM_OFFSET__+0x7f8445>
+ 220:	05 c0       	rjmp	.+10     	; 0x22c <main+0xd6>
+			}
+			else
+			{
+				OneShot2State = FALSE;
+ 222:	10 92 04 3f 	sts	0x3F04, r1	; 0x803f04 <OneShot2State>
+				PORTC.OUTCLR = PIN1_bm;
+ 226:	82 e0       	ldi	r24, 0x02	; 2
+ 228:	80 93 46 04 	sts	0x0446, r24	; 0x800446 <__RODATA_PM_OFFSET__+0x7f8446>
+			}
+			
+			
+			// End of loop cleanup code:
+			TimerTickFlag = FALSE;									// done with the loop
+ 22c:	10 92 08 3f 	sts	0x3F08, r1	; 0x803f08 <TimerTickFlag>
+			IncomingBuzzPrevious = IncomingBuzz;					// used for de-bounced rising edge detector
+ 230:	80 91 03 3f 	lds	r24, 0x3F03	; 0x803f03 <IncomingBuzz>
+ 234:	80 93 02 3f 	sts	0x3F02, r24	; 0x803f02 <IncomingBuzzPrevious>
+			IncomingBuzzPreviousPrevious = IncomingBuzzPrevious;	// used for de-bounced rising edge detector
+ 238:	80 93 01 3f 	sts	0x3F01, r24	; 0x803f01 <IncomingBuzzPreviousPrevious>
+ 23c:	8d cf       	rjmp	.-230    	; 0x158 <main+0x2>
+
+0000023e <ccp_write_io>:
+ 23e:	dc 01       	movw	r26, r24
+ 240:	28 ed       	ldi	r18, 0xD8	; 216
+ 242:	20 93 34 00 	sts	0x0034, r18	; 0x800034 <__RODATA_PM_OFFSET__+0x7f8034>
+ 246:	6c 93       	st	X, r22
+ 248:	08 95       	ret
+
+0000024a <_exit>:
+ 24a:	f8 94       	cli
+
+0000024c <__stop_program>:
+ 24c:	ff cf       	rjmp	.-2      	; 0x24c <__stop_program>
