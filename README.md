@@ -2,7 +2,7 @@
 
 A cave rescue field phone for replacing the TP-6N.
 
-#### **Status: Incomplete -- do not use until all files loaded**
+#### **Status: Incomplete -- do not for design use until all files loaded**
 
 ### Background:
 
